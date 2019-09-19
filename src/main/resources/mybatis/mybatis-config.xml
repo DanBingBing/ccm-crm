@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!--MyBatis 主配置文件-->
+<configuration>
+
+	<!-- 注意配置中标签放置的位置 -->
+
+	<settings>
+		<!-- 开启驼峰命名规则 -->
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+		<!-- 在控制台打印查询语句 -->
+        <!-- <setting name="logImpl" value="STDOUT_LOGGING" /> -->
+	</settings>
+
+    <!-- 为JAVA POJO类起类别名 -->
+    <typeAliases>
+        <!-- 别名方式2，自动扫描，将JAVA类的类名作为类的类别名 -->
+        <package name="com.study.bean" />
+    </typeAliases>
+    
+    <!-- 引入PageHelper分页插件 -->
+    <plugins >
+    	<plugin interceptor="com.github.pagehelper.PageInterceptor">
+    		<!-- 当一直点击下一页或者上一页时，页面上的当前页的页码会小于0,或者大于最大页数，此时，可：
+				(1)在pageNum-1,pageNum+1后判断是否出现上述结果，如果出现则获取首页或末页的信息。
+				(2)分页合理化参数(pageHelper插件)设置：
+		 			在配置pageHelper插件的配置文件中配置一个分页合理化参数的属性： -->
+    		<property name="reasonable" value="true"/>
+    	</plugin>
+    </plugins>
+
+    <!--<mappers>-->
+        <!--由于使用了spring与mybati整合包进行，mapper扫描，这里不需要配置-->
+    <!--</mappers>-->
+
+</configuration>
